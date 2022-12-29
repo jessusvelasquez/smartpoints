@@ -1,0 +1,91 @@
+<div class="content">Tus puntos disponibles<p [ngClass]="{npoints: clientPonts == 0, points: clientPonts > 0}">{{ clientPonts }}</p> </div>
+<br />
+<div class="card-deck">
+  <div class="card">
+    <img
+      class="card-img-top"
+      src="../../../assets/images/angel_navideño.jpg"
+      alt="Card image cap"
+    />
+    <div class="card-body">
+      <h5 class="card-title">Ángel Navideño</h5>
+      <p class="card-text">
+        Este lindo adorno da un toque especial a espacio navideño.
+      </p>
+    </div>
+    <div class="card-footer">
+      <button
+        (click)="getPrizes(products.angel.points)"
+        type="button"
+        class="btn btn-outline-success btn-sm btn-block"
+      >
+        Obtener por {{ products.angel.points }} puntos
+      </button>
+    </div>
+  </div>
+  <div class="card">
+    <img
+      class="card-img-top"
+      src="../../../assets/images/caja_regalo_navidad.jpg"
+      alt="Card image cap"
+    />
+    <div class="card-body">
+      <h5 class="card-title">Caja de ragalo</h5>
+      <p class="card-text">Para sorprender con la primera impresión</p>
+    </div>
+    <div class="card-footer">
+      <button
+        (click)="getPrizes(products.box.points)"
+        type="button"
+        class="btn btn-outline-success btn-sm btn-block"
+      >
+        Obtener por {{ products.box.points }} puntos
+      </button>
+    </div>
+  </div>
+  <div class="card">
+    <img
+      class="card-img-top"
+      src="../../../assets/images/jarron_primavera.jpg"
+      alt="Card image cap"
+    />
+    <div class="card-body">
+      <h5 class="card-title">Jarrón primavera</h5>
+      <p class="card-text">Decoración sencilla y elegante</p>
+    </div>
+    <div class="card-footer">
+      <button
+        (click)="getPrizes(products.vase.points)"
+        type="button"
+        class="btn btn-outline-success btn-sm btn-block"
+      >
+        Obtener por {{ products.vase.points }} puntos
+      </button>
+    </div>
+  </div>
+</div>
+
+<!--Modal-->
+
+<!-- Modal -->
+<ng-template #modalU let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">
+      Consulta tus puntos
+    </h5>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <input  [(ngModel)]="clientID" name="clientID" type="number" class="form-control" placeholder="ID Cliente" aria-label="idclient" aria-describedby="button-addon2" required>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary btn-block" (click)="getPointsToPrize()">Consultar</button>
+  </div>
+</ng-template>

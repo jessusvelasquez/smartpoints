@@ -1,0 +1,36 @@
+
+  <ng-template #registro let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Registro de Factura</h4>
+      <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #formRegistry="ngForm" (ngSubmit)="savedata()">
+        <div class="form-group">
+          <label for="recipient-name" class="col-form-label">ID Cliente</label>
+          <input [ngClass]="{invalidInput: !clientId.valid && clientId.touched}" #clientId="ngModel" name="clientId" [(ngModel)]="data.clientId"  type="number" class="form-control" required>
+          <span *ngIf="!clientId.valid && clientId.touched" class="invalid">ID Cliente es requerido **</span>
+        </div>
+        <div class="form-group">
+          <label for="recipient-name" class="col-form-label">Número de Factura</label>
+          <input [ngClass]="{invalidInput: !nroFactura.valid && nroFactura.touched}" #nroFactura="ngModel" name="nroFactura" [(ngModel)]="data.nroFactura" type="text" class="form-control" required>
+          <span *ngIf="!nroFactura.valid && nroFactura.touched" class="invalid">Número de factura es requerido **</span>
+        </div>
+        <div class="form-group">
+          <label for="recipient-name" class="col-form-label">Valor de Factura</label>
+          <input [ngClass]="{invalidInput: !vrlFactura.valid && vrlFactura.touched}" #vrlFactura="ngModel" name="vrlFactura" [(ngModel)]="data.vlrfactura" type="number" class="form-control" required>
+          <span *ngIf="!vrlFactura.valid && vrlFactura.touched" class="invalid">Valor de factura es requerido **</span>
+        </div>
+        <div class="form-group">
+          <label for="message-text" class="col-form-label">Detalle:</label>
+          <textarea name="detalles" class="form-control" [(ngModel)]="data.detalles" id="message-text"></textarea>
+        </div>
+        <input type="submit" class="btn btn-outline-primary btnSave" value="Guardar" [disabled]="!formRegistry.form.valid"/>
+        <button type="button" class="btn btn-outline-dark" (click)="closeModal()">Cancelar</button>
+      </form>
+      </div>
+  </ng-template>
+  
+  <button class="btn btn-outline-primary btn-block" (click)="open(registro)">Registra tu factura y acumula puntos</button>

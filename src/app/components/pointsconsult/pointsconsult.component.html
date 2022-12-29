@@ -1,0 +1,32 @@
+
+  <ng-template #consulta let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Consulta tus Puntos</h4>
+      <button type="button" class="close" aria-label="Close" (click)="close(formConsult)">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #formConsult="ngForm" (ngSubmit)="getPoints()">
+        <div class="input-group mb-3">
+          <input [ngClass]="{invalidInput: !idclient.valid && idclient.touched}" #idclient="ngModel" [(ngModel)]="clientId" name="idclient" type="number" class="form-control" placeholder="Id Cliente" aria-label="idclient" aria-describedby="button-addon2" required>
+          <div class="input-group-append">
+            <button [disabled]="!idclient.valid" type="submit" class="btn btn-outline-primary" id="button-addon2">Consultar</button>
+          </div>
+        </div>
+
+      </form>
+      
+      <div *ngIf="withPoints" class="pt">
+        Genial! Tienes {{clientPoints}} puntos acumulados
+      </div>
+      <div *ngIf="!withPoints && clientPoints <= 0" class="wpt">
+        No hay puntos acumulados para el cliente consultado
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="close(formConsult)">Cerrar</button>
+    </div>
+  </ng-template>
+  
+  <button class="btn btn-outline-primary btn-block" (click)="open(consulta)">Consulta tus puntos</button>
